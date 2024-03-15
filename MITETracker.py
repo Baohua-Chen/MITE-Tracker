@@ -107,7 +107,7 @@ if args.task == 'all' or args.task == 'candidates':
     workers = []
     for i in range(args.workers):
         worker = Thread(target=findir.findIR, args=(q,args,l_lock, candidates, perc_seq, last_perc_seq))
-        worker.setDaemon(True)
+        worker.daemon = True
         workers.append(worker)
         #worker.start()
     windows_size = MITE_MAX_LEN * 2
