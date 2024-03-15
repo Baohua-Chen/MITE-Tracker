@@ -2,7 +2,13 @@
 import itertools
 import logging
 from Bio.SeqUtils.lcc import lcc_simp
-from Bio.SeqUtils import GC
+try:
+    from Bio.SeqUtils import GC
+except ImportError:
+    from Bio.SeqUtils import gc_fraction
+    def GC(x):
+        return gc_fraction(x, 'ignore') * 100
+
 def makelog(stri, do_print=True):
     if do_print:
         print(stri)
